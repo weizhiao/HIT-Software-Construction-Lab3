@@ -8,13 +8,14 @@ import API.APIs;
 import BasicInterfaceImpl.CommonMultiIntervalSet;
 import CommonADT.Date;
 import CommonADT.MyMap;
+import Decorator.NonOverlapMultiIntervalSet;
 import Decorator.PeriodicMultiIntervalSet;
 
 public class CourseScheduleApp{
 	private Date startdate=new Date();
 	private long weeks;
 	private List<Course> courselist=new ArrayList<>();
-	private PeriodicMultiIntervalSet<Course> set=new PeriodicMultiIntervalSet<>(new CommonMultiIntervalSet<>());
+	private PeriodicMultiIntervalSet<Course> set=new PeriodicMultiIntervalSet<>(new NonOverlapMultiIntervalSet<>(new CommonMultiIntervalSet<>()));
 	
 	//使用防御式拷贝获得set
 	

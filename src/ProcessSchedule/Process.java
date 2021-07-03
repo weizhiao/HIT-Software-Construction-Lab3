@@ -1,4 +1,10 @@
 package ProcessSchedule;
+
+/**
+ * 不可变
+ * @author 魏志豪
+ *
+ */
 public class Process{
 	private final long pid;
 	private final long mintime;

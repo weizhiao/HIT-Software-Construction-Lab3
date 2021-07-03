@@ -2,8 +2,17 @@ package CommonADT;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * 这是一个可变的数据类型，它用来表示时间
+ * @author 魏志豪
+ *
+ */
 public class Date{
 	private Calendar calendar;
+	
+	//AF:时间轴上的一点
+	//RI:日期类型必须是合法的
+	//防御性拷贝
 	
 	public Date() {
 		calendar=new GregorianCalendar();

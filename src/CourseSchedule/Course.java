@@ -1,4 +1,10 @@
 package CourseSchedule;
+
+/**
+ * 该ADT是不可变的
+ * @author 魏志豪
+ *
+ */
 public class Course{
 	private final long courseid;
 	private final String coursename;

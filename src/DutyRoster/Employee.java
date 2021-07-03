@@ -1,4 +1,9 @@
 package DutyRoster;
+/**
+ * 这是一个不可变的数据类型
+ * @author 魏志豪
+ *
+ */
 public class Employee{
 	private final String name;
 	private final String position;

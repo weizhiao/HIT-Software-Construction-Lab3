@@ -11,11 +11,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import API.APIs;
-import BasicInterfaceImpl.CommonIntervalSet;
+import BasicInterfaceImpl.CommonMultiIntervalSet;
 import CommonADT.Date;
 import CommonADT.MyMap;
-import Decorator.NoBlankIntervalSet;
-import Decorator.NonOverlapIntervalSet;
+import Decorator.NonOverlapMultiIntervalSet;
 
 
 
@@ -23,7 +22,7 @@ public class DutyRosterApp{
 	private Date startdate=new Date();
 	private Date enddate=new Date();
 	private List<Employee> employeelist=new ArrayList<>();
-	private NoBlankIntervalSet<Employee> set= new NoBlankIntervalSet<>(new NonOverlapIntervalSet<>(new CommonIntervalSet<>()));
+	private NonOverlapMultiIntervalSet<Employee> set= new NonOverlapMultiIntervalSet<>(new CommonMultiIntervalSet<>());
 	
 	//AF:员工，排班时间的笛卡尔乘积
 	//RI:员工排表后不可删除
@@ -36,14 +35,10 @@ public class DutyRosterApp{
 		set.removeall();
 	}
 	
-	public NoBlankIntervalSet<Employee> getIntervalSet(){
-		NoBlankIntervalSet<Employee> temp=new NoBlankIntervalSet<>(new NonOverlapIntervalSet<>(new CommonIntervalSet<>()));
-		long start;
-		long end;
-		for(Employee label:set.labels()) {
-			start=set.start(label);
-			end=set.end(label);
-			temp.insert(start, end, label);
+	public NonOverlapMultiIntervalSet<Employee> getIntervalSet(){
+		NonOverlapMultiIntervalSet<Employee> temp= new NonOverlapMultiIntervalSet<>(new CommonMultiIntervalSet<>());
+		for(MyMap<Employee> e:set.arrangestart()) {
+			temp.insert(e.start, e.end, e.label);
 		}
 		return temp;
 	}
@@ -259,8 +254,8 @@ public class DutyRosterApp{
 	 * @param phone
 	 */
 	public void addemployee(String name,String position,String phone) {
-		Employee temp=new Employee(name,position,phone);
-		employeelist.add(temp);
+			Employee temp=new Employee(name,position,phone);
+			employeelist.add(temp);
 	}
 	
 	/**
@@ -522,7 +517,7 @@ public class DutyRosterApp{
 							month=input.nextInt();
 							System.out.println("请输入日：");
 							day=input.nextInt();
-							System.out.println("请输入该员工开始值班的时间：");
+							System.out.println("请输入该员工结束值班的时间：");
 							System.out.println("请输入年：");
 							endyear=input.nextInt();
 							System.out.println("请输入月：");
